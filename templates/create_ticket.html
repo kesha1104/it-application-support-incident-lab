@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Incident | IT Application Support Lab</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <header>
+        <h1>IT Application Support & Incident Management Lab</h1>
+        <p>
+            Simulated enterprise incident management, application support,
+            and troubleshooting environment.
+        </p>
+    </header>
+
+    <main>
+
+        <div class="page-header">
+            <div>
+                <h2>Create Incident</h2>
+                <p>Record a new IT or application support issue.</p>
+            </div>
+
+            <a href="/" class="button secondary">
+                Back to Dashboard
+            </a>
+        </div>
+
+        <section class="form-card">
+
+            <form method="post">
+
+                <label for="requester_name">Requester Name</label>
+                <input
+                    type="text"
+                    id="requester_name"
+                    name="requester_name"
+                    placeholder="Example: John Smith"
+                    required
+                >
+
+                <label for="email">Requester Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="john.smith@example.com"
+                    required
+                >
+
+                <label for="title">Incident Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Example: Microsoft 365 Authentication Failure"
+                    required
+                >
+
+                <label for="category">Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Application">Application</option>
+                    <option value="Microsoft 365">Microsoft 365</option>
+                    <option value="Identity / Access">Identity / Access</option>
+                    <option value="Network">Network</option>
+                    <option value="API">API</option>
+                    <option value="Database">Database</option>
+                    <option value="Hardware">Hardware</option>
+                    <option value="Security">Security</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="description">Problem Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="6"
+                    placeholder="Describe the issue, affected application or system, error message, symptoms, and business impact."
+                    required
+                ></textarea>
+
+                <label for="priority">Priority</label>
+                <select id="priority" name="priority" required>
+                    <option value="">Select priority</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+
+                <div class="form-actions">
+
+                    <button type="submit" class="button">
+                        Create Incident
+                    </button>
+
+                    <a href="/" class="button secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

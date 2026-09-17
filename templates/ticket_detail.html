@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Incident #{{ ticket["id"] }} | IT Application Support Lab
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <header>
+        <h1>
+            IT Application Support & Incident Management Lab
+        </h1>
+
+        <p>
+            Incident investigation, troubleshooting, root cause analysis,
+            and resolution tracking.
+        </p>
+    </header>
+
+
+    <main>
+
+        <div class="page-heading">
+
+            <div>
+                <h2>
+                    Incident #{{ ticket["id"] }}:
+                    {{ ticket["title"] }}
+                </h2>
+            </div>
+
+            <a
+                class="secondary-button"
+                href="{{ url_for('home') }}"
+            >
+                Back to Dashboard
+            </a>
+
+        </div>
+
+
+        <section>
+
+            <!-- ============================= -->
+            <!-- INCIDENT INFORMATION -->
+            <!-- ============================= -->
+
+            <div class="ticket-details">
+
+                <div class="detail-item">
+                    <span>Requester</span>
+                    <strong>
+                        {{ ticket["requester_name"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Email</span>
+                    <strong>
+                        {{ ticket["email"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Category</span>
+                    <strong>
+                        {{ ticket["category"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Priority</span>
+                    <strong>
+                        {{ ticket["priority"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Current Status</span>
+                    <strong>
+                        {{ ticket["status"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Assigned Analyst</span>
+
+                    <strong>
+                        {% if ticket["assigned_analyst"] %}
+                            {{ ticket["assigned_analyst"] }}
+                        {% else %}
+                            Unassigned
+                        {% endif %}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Created</span>
+                    <strong>
+                        {{ ticket["created_at"] }}
+                    </strong>
+                </div>
+
+
+                <div class="detail-item">
+                    <span>Resolved</span>
+
+                    <strong>
+                        {% if ticket["resolved_at"] %}
+                            {{ ticket["resolved_at"] }}
+                        {% else %}
+                            Not Resolved
+                        {% endif %}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- ORIGINAL INCIDENT DESCRIPTION -->
+            <!-- ============================= -->
+
+            <div class="description-panel">
+
+                <h3>
+                    Problem Description
+                </h3>
+
+                <p>
+                    {{ ticket["description"] }}
+                </p>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- INCIDENT INVESTIGATION FORM -->
+            <!-- ============================= -->
+
+            <form
+                class="status-form"
+                method="post"
+            >
+
+                <h3>
+                    Incident Investigation & Resolution
+                </h3>
+
+
+                <!-- Assigned Analyst -->
+
+                <label for="assigned_analyst">
+                    Assigned Analyst
+                </label>
+
+                <input
+                    type="text"
+                    id="assigned_analyst"
+                    name="assigned_analyst"
+                    value="{{ ticket['assigned_analyst'] or '' }}"
+                    placeholder="Example: Kesha Dave"
+                >
+
+
+                <!-- Investigation Notes -->
+
+                <label for="investigation_notes">
+                    Investigation Notes
+                </label>
+
+                <textarea
+                    id="investigation_notes"
+                    name="investigation_notes"
+                    rows="6"
+                    placeholder="Document troubleshooting steps, logs reviewed, tests performed, user impact, and technical findings."
+                >{{ ticket["investigation_notes"] or "" }}</textarea>
+
+
+                <!-- Root Cause -->
+
+                <label for="root_cause">
+                    Root Cause
+                </label>
+
+                <textarea
+                    id="root_cause"
+                    name="root_cause"
+                    rows="4"
+                    placeholder="Document the confirmed or simulated root cause of the incident."
+                >{{ ticket["root_cause"] or "" }}</textarea>
+
+
+                <!-- Resolution -->
+
+                <label for="resolution">
+                    Resolution
+                </label>
+
+                <textarea
+                    id="resolution"
+                    name="resolution"
+                    rows="5"
+                    placeholder="Document the corrective action, validation steps, and final outcome."
+                >{{ ticket["resolution"] or "" }}</textarea>
+
+
+                <!-- Status -->
+
+                <label for="status">
+                    Incident Status
+                </label>
+
+                <select
+                    id="status"
+                    name="status"
+                >
+
+                    {% for status in statuses %}
+
+                        <option
+                            value="{{ status }}"
+                            {% if status == ticket["status"] %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ status }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <!-- Save -->
+
+                <button type="submit">
+                    Save Incident Update
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

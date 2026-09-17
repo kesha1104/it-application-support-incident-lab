@@ -1,0 +1,14 @@
+2026-09-17 09:02:14 INFO Application service started successfully
+2026-09-17 09:05:31 INFO User login successful user=sarah.lee
+2026-09-17 09:08:42 ERROR HTTP 500 endpoint=/api/customers user=sarah.lee
+2026-09-17 09:08:45 ERROR HTTP 500 endpoint=/api/customers user=sarah.lee
+2026-09-17 09:10:12 WARN Authentication failed user=michael.patel
+2026-09-17 09:10:18 WARN Authentication failed user=michael.patel
+2026-09-17 09:12:26 ERROR Database connection timeout database=customers
+2026-09-17 09:13:04 ERROR Database connection timeout database=customers
+2026-09-17 09:15:41 WARN HTTP 403 resource=/sharepoint user=john.smith
+2026-09-17 09:18:11 ERROR HTTP 500 endpoint=/api/orders user=emily.chen
+2026-09-17 09:21:55 INFO VPN connection established user=lisa.rodriguez
+2026-09-17 09:22:10 WARN Internal application unreachable user=lisa.rodriguez
+2026-09-17 09:25:37 ERROR API authentication failure HTTP 401 endpoint=/api/inventory
+2026-09-17 09:30:14 INFO User logout successful user=sarah.lee

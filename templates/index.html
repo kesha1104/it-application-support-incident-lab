@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        IT Application Support & Incident Management Lab
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <header>
+
+        <h1>
+            IT Application Support & Incident Management Lab
+        </h1>
+
+        <p>
+            Simulated enterprise incident management,
+            application support, and troubleshooting environment.
+        </p>
+
+    </header>
+
+
+    <main>
+
+        <!-- ====================================== -->
+        <!-- DASHBOARD HEADER -->
+        <!-- ====================================== -->
+
+        <div class="page-heading">
+
+            <h2>
+                Incident Operations Dashboard
+            </h2>
+
+            <a
+                class="primary-button"
+                href="{{ url_for('create_ticket') }}"
+            >
+                Create Incident
+            </a>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- INCIDENT STATISTICS -->
+        <!-- ====================================== -->
+
+        <div class="statistics-grid">
+
+            <div class="stat-card">
+
+                <span>
+                    Total
+                </span>
+
+                <strong>
+                    {{ statistics["total"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-open">
+
+                <span>
+                    Open
+                </span>
+
+                <strong>
+                    {{ statistics["open"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-progress">
+
+                <span>
+                    In Progress
+                </span>
+
+                <strong>
+                    {{ statistics["in_progress"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-pending">
+    <span>Pending User</span>
+
+                <strong>
+                    {{ statistics["pending_user"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-escalated">
+    <span>Escalated</span>
+
+                <strong>
+                    {{ statistics["escalated"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-resolved">
+
+                <span>
+                    Resolved
+                </span>
+
+                <strong>
+                    {{ statistics["resolved"] }}
+                </strong>
+
+            </div>
+
+
+            <div class="stat-card stat-closed">
+
+                <span>
+                    Closed
+                </span>
+
+                <strong>
+                    {{ statistics["closed"] }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- SEARCH AND FILTERS -->
+        <!-- ====================================== -->
+
+        <section class="filter-panel">
+
+            <form
+                class="filter-form"
+                method="get"
+            >
+
+                <div class="filter-field">
+
+                    <label for="search">
+                        Search
+                    </label>
+
+                    <input
+                        type="search"
+                        id="search"
+                        name="search"
+                        value="{{ search }}"
+                        placeholder="Title, requester, category or analyst"
+                    >
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select
+                        id="status"
+                        name="status"
+                    >
+
+                        <option value="">
+                            All statuses
+                        </option>
+
+                        {% for status in statuses %}
+
+                            <option
+                                value="{{ status }}"
+                                {% if status == selected_status %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ status }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-field">
+
+                    <label for="priority">
+                        Priority
+                    </label>
+
+                    <select
+                        id="priority"
+                        name="priority"
+                    >
+
+                        <option value="">
+                            All priorities
+                        </option>
+
+                        {% for priority in priorities %}
+
+                            <option
+                                value="{{ priority }}"
+                                {% if priority == selected_priority %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ priority }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="filter-actions">
+
+                    <button type="submit">
+                        Apply
+                    </button>
+
+                    <a
+                        class="secondary-button"
+                        href="{{ url_for('home') }}"
+                    >
+                        Reset
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- ====================================== -->
+        <!-- INCIDENT TABLE -->
+        <!-- ====================================== -->
+
+        <section>
+
+            {% if tickets %}
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Title
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Priority
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Assigned Analyst
+                                </th>
+
+                                <th>
+                                    Created
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for ticket in tickets %}
+
+                                <tr>
+
+                                    <td>
+                                        #{{ ticket["id"] }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ ticket["title"] }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ ticket["category"] }}
+                                    </td>
+
+
+                                    <td>
+                                        {{ ticket["priority"] }}
+                                    </td>
+
+
+                                    <td>
+
+                                        <span
+                                            class="
+                                                status-badge
+                                                status-{{ ticket['status']|lower|replace(' ', '-') }}
+                                            "
+                                        >
+                                            {{ ticket["status"] }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if ticket["assigned_analyst"] %}
+
+                                            {{ ticket["assigned_analyst"] }}
+
+                                        {% else %}
+
+                                            Unassigned
+
+                                        {% endif %}
+
+                                    </td>
+
+
+                                    <td>
+                                        {{ ticket["created_at"] }}
+                                    </td>
+
+
+                                    <td>
+
+                                        <a
+                                            class="view-link"
+                                            href="{{ url_for(
+                                                'ticket_detail',
+                                                ticket_id=ticket['id']
+                                            ) }}"
+                                        >
+                                            View
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="empty-state">
+
+                    <h3>
+                        No matching incidents
+                    </h3>
+
+                    <p>
+                        Change the filters or create a new incident.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
