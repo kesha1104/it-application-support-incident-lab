@@ -7,7 +7,7 @@ A web-based application for recording, tracking and managing IT support requests
 ### Incident Operations Dashboard
 ![Incident Operations Dashboard](screenshots/screenshot1.jpeg)
 
-### Incident Dashboard Table
+### Incident Dashboard & Workflow
 ![Incident Dashboard Table](screenshots/screenshot2.jpeg)
 
 ### Incident Summary
@@ -16,16 +16,16 @@ A web-based application for recording, tracking and managing IT support requests
 ### Incident Investigation
 ![Incident Investigation](screenshots/ss4.jpeg)
 
-### Root Cause and Resolution
+### Root Cause & Resolution
 ![Root Cause and Resolution](screenshots/ss5.jpeg)
 
 ### Application Log Analysis
 ![Application Log Analysis](screenshots/ss6.jpeg)
 
-### REST API Incident Data
+### REST API - Incident Data
 ![REST API Incident Data](screenshots/ss7.jpeg)
 
-### REST API Additional Incident Records
+### REST API - Additional Incident Records
 ![REST API Additional Records](screenshots/ss8.jpeg)
 
 ## Overview
