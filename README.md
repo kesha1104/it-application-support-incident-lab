@@ -151,7 +151,13 @@ A production version would additionally require:
 * HTTPS and a production WSGI server
 * Logging, backups and monitoring
 
-## Author
+## 👩‍💻 Maintainer & Project Customization
 
-Trevolan Chetty
-ICT graduate and Master of Internet of Things candidate
+**Kesha Dave**
+
+M.S. Cybersecurity & Privacy — New Jersey Institute of Technology
+
+This portfolio version was customized and extended by Kesha Dave to demonstrate practical skills in application support, incident management, troubleshooting, SQL analysis, REST APIs, and log analysis.
+
+**GitHub:** https://github.com/kesha1104  
+**LinkedIn:** https://linkedin.com/in/keshadave
