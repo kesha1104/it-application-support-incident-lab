@@ -2,7 +2,31 @@
 
 A web-based application for recording, tracking and managing IT support requests. The project was developed as an individual portfolio project to demonstrate practical Python, Flask, SQLite, HTML, CSS, testing and Git skills.
 
-![IT Application Support & Incident Management Lab dashboard](screenshots/dashboard.png)
+## Project Screenshots
+
+### Incident Operations Dashboard
+![Incident Operations Dashboard](screenshots/screenshot1.jpeg)
+
+### Incident Dashboard Table
+![Incident Dashboard Table](screenshots/screenshot2.jpeg)
+
+### Incident Summary
+![Incident Summary](screenshots/ss3.jpeg)
+
+### Incident Investigation
+![Incident Investigation](screenshots/ss4.jpeg)
+
+### Root Cause and Resolution
+![Root Cause and Resolution](screenshots/ss5.jpeg)
+
+### Application Log Analysis
+![Application Log Analysis](screenshots/ss6.jpeg)
+
+### REST API Incident Data
+![REST API Incident Data](screenshots/ss7.jpeg)
+
+### REST API Additional Incident Records
+![REST API Additional Records](screenshots/ss8.jpeg)
 
 ## Overview
 
